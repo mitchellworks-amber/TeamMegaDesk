@@ -1,0 +1,141 @@
+﻿<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProjectGuid>{91494984-AC7B-4A0F-92E7-20864AF724AC}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <NoStandardLibraries>false</NoStandardLibraries>
+    <AssemblyName>WindowsApplication</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup>
+    <RootNamespace>MegaDesk2_0</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AddQuoteView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddQuoteView.Designer.cs">
+      <DependentUpon>AddQuoteView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AllQuotesView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AllQuotesView.Designer.cs">
+      <DependentUpon>AllQuotesView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Desk.cs" />
+    <Compile Include="DeskQuote.cs" />
+    <Compile Include="DisplayQuoteView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DisplayQuoteView.Designer.cs">
+      <DependentUpon>DisplayQuoteView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainMenuView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainMenuView.Designer.cs">
+      <DependentUpon>MainMenuView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="SearchQuotesView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SearchQuotesView.Designer.cs">
+      <DependentUpon>SearchQuotesView.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="AddQuoteView.resx">
+      <DependentUpon>AddQuoteView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AllQuotesView.resx">
+      <DependentUpon>AllQuotesView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DisplayQuoteView.resx">
+      <DependentUpon>DisplayQuoteView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainMenuView.resx">
+      <DependentUpon>MainMenuView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SearchQuotesView.resx">
+      <DependentUpon>SearchQuotesView.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include=".git\config" />
+    <None Include=".git\description" />
+    <None Include=".git\HEAD" />
+    <None Include=".git\hooks\applypatch-msg.sample" />
+    <None Include=".git\hooks\commit-msg.sample" />
+    <None Include=".git\hooks\post-update.sample" />
+    <None Include=".git\hooks\pre-applypatch.sample" />
+    <None Include=".git\hooks\pre-commit.sample" />
+    <None Include=".git\hooks\pre-push.sample" />
+    <None Include=".git\hooks\pre-rebase.sample" />
+    <None Include=".git\hooks\pre-receive.sample" />
+    <None Include=".git\hooks\prepare-commit-msg.sample" />
+    <None Include=".git\hooks\update.sample" />
+    <None Include=".git\index" />
+    <None Include=".git\info\exclude" />
+    <None Include=".git\logs\HEAD" />
+    <None Include=".git\logs\refs\heads\master" />
+    <None Include=".git\logs\refs\remotes\origin\HEAD" />
+    <None Include=".git\objects\83\fce1a58ce2e31fbee4d4e3fbf545b78f70be9d" />
+    <None Include=".git\objects\9c\2482ea6fab0a5973de606e6b14eeccd04219e6" />
+    <None Include=".git\objects\c6\0241959be0b7a9f4269388239d84894dd4c567" />
+    <None Include=".git\packed-refs" />
+    <None Include=".git\refs\heads\master" />
+    <None Include=".git\refs\remotes\origin\HEAD" />
+    <None Include=".vs\slnx.sqlite" />
+    <None Include=".vs\TeamMegaDesk\v15\.suo" />
+    <None Include=".vs\VSWorkspaceState.json" />
+    <None Include="App.config" />
+    <None Include="README.md" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="desk.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include=".git\objects\info\" />
+    <Folder Include=".git\objects\pack\" />
+    <Folder Include=".git\refs\tags\" />
+    <Folder Include=".vs\MegaDesk2_0\v15\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSHARP.Targets" />
+  <ProjectExtensions>
+    <VisualStudio AllowExistingFolder="true" />
+  </ProjectExtensions>
+</Project>
