@@ -4,24 +4,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 
 namespace MegaDesk2_0
 {
     public class DeskQuote
     {
         // vars
-        #region Object member variables
         public string CustomerName;
         public DateTime QuoteDate = new DateTime();
         public Desk TheDesk = new Desk();
         public int RushDays;
         public int QuoteAmount;
-        #endregion
-
-        #region Local variables
         public int SurfaceArea = 0;
-        public int TotalPrice = 0;
-        #endregion
 
         private const int PRICE_BASE = 200;
         private const int SIZE_MAX = 1000;
@@ -40,12 +35,11 @@ namespace MegaDesk2_0
             TheDesk.Material = material;
             RushDays = rushDays;
             SurfaceArea = TheDesk.Width * TheDesk.Depth;
-
+            QuoteAmount = CalculateQuote();
         }
 
-        public int CalulateQuote()
+        public int CalculateQuote()
         {
-            TotalPrice = PRICE_BASE + AddOns();
             return PRICE_BASE + AddOns();
         }
 
@@ -122,34 +116,14 @@ namespace MegaDesk2_0
             return AddOnCost;
         }
 
-        public void WriteQuote()
+        public void WriteQuote(DeskQuote quote)
         {
             try
             {
-                using(StreamWriter writer = new StreamWriter("quotes.csv", true))
-                {
-                    //writer.WriteLine("Order\tName\tWidth\tDepth\tDrawers\tMaterial\tProduction Days\tTotal");
-                    writer.WriteLine(QuoteDate + "\t" + CustomerName + "\t" + TheDesk.Width + "\t" + TheDesk.Depth + "\t" + TheDesk.Drawers + "\t" + TheDesk.Material + "\t" + RushDays + "\t" + TotalPrice);
-                }
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("An error occurred: '{0}'", e);
-            }
-        }
-        public void ReadQuotes()
-        {
-            try
-            {
-                // Read and show each line from the file.
-                string line = "";
-                using (StreamReader sr = new StreamReader("quotes.csv"))
-                {
-                    while ((line = sr.ReadLine()) != null)
-                    {
-                        // stuff here like Console.WriteLine(line);
-                    }
-                }
+                var json = File.ReadAllText("quotes.json");
+                var quotes = JsonConvert.DeserializeObject<List<DeskQuote>>(json);
+                quotes.Add(quote);
+                File.WriteAllText("quotes.json", JsonConvert.SerializeObject(quotes));
             }
             catch (Exception e)
             {

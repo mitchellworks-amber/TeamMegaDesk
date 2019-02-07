@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Newtonsoft.Json;
 
 namespace MegaDesk2_0
 {
@@ -23,23 +24,35 @@ namespace MegaDesk2_0
             try
             {
                 // read the quotes file
-                string CSVFilePathName = "quotes.csv";
-                string[] Lines = File.ReadAllLines(CSVFilePathName);
-                string[] Fields;
-                Fields = Lines[0].Replace("\"", "").Split(new char[] { '\t' });
-                int Cols = Fields.GetLength(0);
+                var json = File.ReadAllText(@"quotes.json");
+                var quotes = JsonConvert.DeserializeObject<List<DeskQuote>>(json);
+
                 DataTable dt = new DataTable();
-                //1st row must be column names
-                for (int i = 0; i < Cols; i++)
-                    dt.Columns.Add(Fields[i], typeof(string));
-                DataRow Row;
-                for (int i = 1; i < Lines.GetLength(0); i++)
+
+                dt.Columns.Add("Order");
+                dt.Columns.Add("Name");
+                dt.Columns.Add("Width");
+                dt.Columns.Add("Depth");
+                dt.Columns.Add("Drawers");
+                dt.Columns.Add("Material");
+                dt.Columns.Add("Production Days");
+                dt.Columns.Add("Surface Area");
+                dt.Columns.Add("Total Price");
+                foreach (var item in quotes)
                 {
-                    Fields = Lines[i].Replace("\"", "").Split(new char[] { '\t' });
-                    Row = dt.NewRow();
-                    for (int f = 0; f < Cols; f++)
-                        Row[f] = Fields[f];
-                    dt.Rows.Add(Row);
+                    var row = dt.NewRow();
+
+                    row["Order"] = item.QuoteDate;
+                    row["Name"] = item.CustomerName;
+                    row["Width"] = item.TheDesk.Width;
+                    row["Depth"] = item.TheDesk.Depth;
+                    row["Drawers"] = item.TheDesk.Drawers;
+                    row["Material"] = item.TheDesk.Material;
+                    row["Production Days"] = item.RushDays;
+                    row["Surface Area"] = item.SurfaceArea;
+                    row["Total Price"] = item.QuoteAmount;
+
+                    dt.Rows.Add(row);
                 }
                 dataGridView1.DataSource = dt;
             }

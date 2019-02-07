@@ -12,12 +12,10 @@ namespace MegaDesk2_0
 {
     public partial class DisplayQuoteView : Form
     {
-        private int QuotePrice;
         private DeskQuote TheQuote;
 
-        public DisplayQuoteView(int quotePrice, DeskQuote quote)
+        public DisplayQuoteView(DeskQuote quote)
         {
-            QuotePrice = quotePrice;
             TheQuote = quote;
             InitializeComponent();
         }
@@ -30,7 +28,7 @@ namespace MegaDesk2_0
             label5.Text = "Drawers: " + TheQuote.TheDesk.Drawers;
             label6.Text = "Material: " + TheQuote.TheDesk.Material;
             label7.Text = "Production Days: " + TheQuote.RushDays;
-            label2.Text = "$" + QuotePrice;
+            label2.Text = "$" + TheQuote.QuoteAmount;
         }
     }
 }
