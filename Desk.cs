@@ -23,4 +23,19 @@ namespace MegaDesk2_0
         public int Drawers { get; set; }
         public string Material { get; set; }
     }
+
+    // Here is an example of Desk as a structure:
+    //public struct Desk
+    //{
+    //    public int Width, Depth, Drawers;
+    //    public string Material;
+
+    //    public Desk(int width, int depth, int drawers, string material)
+    //    {
+    //        Width = width;
+    //        Depth = depth;
+    //        Drawers = drawers;
+    //        Material = material;
+    //    }
+    //}
 }
