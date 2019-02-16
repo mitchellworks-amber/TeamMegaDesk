@@ -146,6 +146,7 @@ namespace MegaDesk2_0
                     material = comboBox4.SelectedItem.ToString();
                     rushDays = int.Parse(comboBox5.SelectedItem.ToString());
                     DeskQuote quote = new DeskQuote(name, width, depth, drawers, material, rushDays);
+                    quote.rushOrder();
 
                     // write the quote to file
                     quote.WriteQuote(quote);

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using Newtonsoft.Json;
 
 namespace MegaDesk2_0
@@ -21,6 +22,8 @@ namespace MegaDesk2_0
         private const int PRICE_BASE = 200;
         private const int SIZE_MAX = 1000;
         private const int PRICE_PER_DRAWER = 50;
+        int[,] rushCost1 = new int[3, 3];
+        
         // ....
 
 
@@ -36,6 +39,7 @@ namespace MegaDesk2_0
             RushDays = rushDays;
             SurfaceArea = TheDesk.Width * TheDesk.Depth;
             QuoteAmount = CalculateQuote();
+            
         }
 
         public int CalculateQuote()
@@ -85,27 +89,27 @@ namespace MegaDesk2_0
             {
                 case 3:
                     if (SurfaceArea < 1000)
-                        AddOnCost += 60;
+                        AddOnCost += rushCost1[0, 0];
                     else if (SurfaceArea >= 1000 && SurfaceArea < 2000)
-                        AddOnCost += 70;
+                        AddOnCost += rushCost1[0, 1];
                     else if (SurfaceArea >= 2000)
-                        AddOnCost += 80;
+                        AddOnCost += rushCost1[0, 2];
                     break;
                 case 5:
                     if (SurfaceArea < 1000)
-                        AddOnCost += 40;
+                        AddOnCost += rushCost1[1, 0];
                     else if (SurfaceArea >= 1000 && SurfaceArea < 2000)
-                        AddOnCost += 50;
+                        AddOnCost += rushCost1[1, 1];
                     else if (SurfaceArea >= 2000)
-                        AddOnCost += 60;
+                        AddOnCost += rushCost1[1, 2];
                     break;
                 case 7:
                     if (SurfaceArea < 1000)
-                        AddOnCost += 30;
+                        AddOnCost += rushCost1[2, 0];
                     else if (SurfaceArea >= 1000 && SurfaceArea < 2000)
-                        AddOnCost += 35;
+                        AddOnCost += rushCost1[2, 1];
                     else if (SurfaceArea >= 2000)
-                        AddOnCost += 40;
+                        AddOnCost += rushCost1[2, 2];
                     break;
                 default:
                     AddOnCost += 0;
@@ -130,5 +134,53 @@ namespace MegaDesk2_0
                 Console.WriteLine("An error occurred: '{0}'", e);
             }
         }
+
+
+        public void rushOrder()
+            {
+
+            try
+                {
+
+
+                string[] ar1 = new string[9];
+                int z = 0;
+              
+                    ar1 = File.ReadAllLines("rushOrderPrices.txt");
+             
+
+                for(int x = 0; x < 3; x++)
+                {
+                    for(int y = 0; y < 3; y++)
+                    {
+                        rushCost1[x, y] = Convert.ToInt32(ar1[z]);
+                        z++;
+                    }
+
+                }
+
+
+
+                //rushCost1[0, 0] = 60;
+                //rushCost1[0, 1] = 70;
+                //rushCost1[0, 2] = 80;
+                //rushCost1[1, 0] = 40;
+                //rushCost1[1, 1] = 50;
+                //rushCost1[1, 2] = 60;
+                //rushCost1[2, 0] = 30;
+                //rushCost1[2, 1] = 35;
+                //rushCost1[2, 2] = 40;
+                 
+
+            }
+
+
+            catch(Exception e)
+                {
+                MessageBox.Show(e.ToString());
+                }
+
+          } 
+
     }
 }
